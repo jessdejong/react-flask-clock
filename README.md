@@ -16,6 +16,11 @@ Simple website that displays the current time. Made using the React and Flask fr
 * Update the default React .gitignore to account for Python/Flask
 * Start the server with 'flask run'.
 
+
+## Step 3. Install Tailwind CSS.
+
+* Install Tailwind CSS. This is a UI framework for design.
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.\

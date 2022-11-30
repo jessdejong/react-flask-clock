@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
 
 function App() {
+  const [currentTime, setTime] = useState("hello");
+
+  useEffect(() => {
+    fetch("/api/time")
+      .then((res) => res.json())
+      .then((data) => setTime(data.time));
+  }, []);
+
+  convertDateTimeToDayOfWeek(currentTime);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
+    <div className="container px-5 py-5">
+      <div className="px-2 py-2 bg-blue-400 rounded-md">
+        <p className="text-3xl text-white">
+          The current day of the week is{" "}
+          {convertDateTimeToDayOfWeek(currentTime)}.
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      </div>
     </div>
   );
+}
+
+function convertDateTimeToDayOfWeek(time) {
+  console.log(time);
+  let dayAbbreviation = time.split(",")[0];
+  return dayAbbreviation;
 }
 
 export default App;
