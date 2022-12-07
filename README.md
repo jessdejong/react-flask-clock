@@ -24,3 +24,4 @@ Simple website that displays the current time. Made using the React and Flask fr
 
 * Both the frontend and the backend can be deployed onto a single app engine project on Google Cloud. The required files are 'requirements.txt' and the '*.yaml' files. 'dispatch.yaml' dispatches URL requests to the backend or the frontend. By using multiple .yaml files you can deploy an app engine app using multiple 'services'.
 * Use the command 'gcloud app deploy backend.yaml app.yaml dispatch.yaml'
+* Before deploying the frontend app, make sure you've created the /build folder by running 'npm run build'.
