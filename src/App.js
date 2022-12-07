@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 function App() {
-  const [currentTime, setTime] = useState("hello");
+  const [currentTime, setTime] = useState("");
 
   useEffect(() => {
     fetch("/api/time")
