@@ -12,3 +12,9 @@ handlers:
   # the entire handlers section) when there are no static files defined.
 - url: /.*
   script: auto
+
+# env_variables:
+#   CLOUD_SQL_USERNAME: jess
+#   CLOUD_SQL_PASSWORD: password
+#   CLOUD_SQL_DATABASE_NAME: test-database
+#   CLOUD_SQL_CONNECTION_NAME: react-flask-clock-370406:us-central1:test-db

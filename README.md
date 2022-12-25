@@ -5,7 +5,7 @@ Simple website that displays the current time. Made using the React and Flask fr
 ## Step 1. Create the React App.
 
 * Use 'create-react-app' to create the default React application.
-* Configure a proxy to the Backend in package.json.
+* Configure a proxy to the Backend in package.json. Make sure to use "http://127..." (the number).
 * Start the server with 'npm start'.
 
 ## Step 2. Create the Flask API Backend.
@@ -23,5 +23,5 @@ Simple website that displays the current time. Made using the React and Flask fr
 ## Step 4. Deploy on Google App Engine.
 
 * Both the frontend and the backend can be deployed onto a single app engine project on Google Cloud. The required files are 'requirements.txt' and the '*.yaml' files. 'dispatch.yaml' dispatches URL requests to the backend or the frontend. By using multiple .yaml files you can deploy an app engine app using multiple 'services'.
-* Use the command 'gcloud app deploy backend.yaml app.yaml dispatch.yaml'
+* Use the command 'gcloud app deploy app.yaml dispatch.yaml api/backend.yaml'
 * Before deploying the frontend app, make sure you've created the /build folder by running 'npm run build'.
