@@ -1,30 +1,6 @@
 from flask import Flask
+from db import fetch_times, store_time
 import datetime
-from google.cloud import datastore
-
-datastore_client = datastore.Client()
-
-def store_time(dt):
-    entity = datastore.Entity(key=datastore_client.key('visit'))
-    entity.update({
-        'timestamp': dt
-    })
-
-    datastore_client.put(entity)
-
-
-def fetch_times(limit):
-    query = datastore_client.query(kind='visit')
-    query.order = ['-timestamp']
-
-    times = query.fetch(limit=limit)
-
-    return times
-
-
-
-
-
 
 app = Flask(__name__)
 
@@ -36,8 +12,6 @@ def get_current_time():
     # Fetch the most recent 10 access times from Datastore.
     times = fetch_times(10)
 
-    #return render_template(
-    #    'index.html', times=times)
     return {'time': datetime.datetime.now(), 'times': list(times)}
 
 

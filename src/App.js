@@ -1,41 +1,65 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import List from "@mui/material/List";
+import Grid from "@mui/material/Grid";
+import ListItem from "@mui/material/ListItem";
+import Typography from "@mui/material/Typography";
+import Card from "@mui/material/Card";
 
 function App() {
   const [currentTime, setTime] = useState("");
-  const [currentTimes, setTimes] = useState([]);
+  const [currentTimes, setTimes] = useState(null);
+  // Ensures that data fetching only happens once.
+  const dataFetchedRef = useRef(false);
 
-  useEffect(() => {
+  const fetchData = () => {
     fetch("/api/time")
       .then((res) => res.json())
       .then((data) => {
         setTime(data.time);
         setTimes(data.times);
-    });
+      });
+  };
+
+  // Retrieve time data from the Flask API.
+  useEffect(() => {
+    if (dataFetchedRef.current) return;
+    fetchData();
+    dataFetchedRef.current = true;
   }, []);
 
-  // convertDateTimeToDayOfWeek(currentTime);
-  // console.log(currentTimes);
-
+  // Display the times using Material UI components.
   return (
-    <div className="container px-5 py-5">
-      <div className="px-2 py-2 bg-blue-400 rounded-md">
-        <p className="text-3xl text-white">
+    <Grid container spacing={2}>
+      <Grid item xs={6}>
+        <Typography variant="h3">My simple web application.</Typography>
+      </Grid>
+      <Grid item xs={12}>
+        {currentTimes ? (
+          <Card variant="outlined">
+            <List>
+              {currentTimes.map((element) => {
+                return (
+                  <ListItem>
+                    <Typography>{element.timestamp}</Typography>
+                  </ListItem>
+                );
+              })}
+            </List>
+          </Card>
+        ) : null}
+      </Grid>
+
+      <Grid item xs={6}>
+        <Typography variant="h5">
           The current day of the week is{" "}
           {convertDateTimeToDayOfWeek(currentTime)}.
-        </p>
-          <ol>
-            {currentTimes.map(element => {
-              // console.log(element);
-              return <li className="text-black">{element.timestamp}</li>;
-            })}
-          </ol>
-      </div>
-    </div>
+        </Typography>
+      </Grid>
+    </Grid>
   );
 }
 
 function convertDateTimeToDayOfWeek(time) {
-  // console.log(time);
   let dayAbbreviation = time.split(",")[0];
   return dayAbbreviation;
 }
