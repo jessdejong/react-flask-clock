@@ -1,5 +1,7 @@
 # React-flask-clock
 
+![Screenshot](screenshot.png)
+
 Simple website that displays the current time. Made using the React and Flask frameworks, inspired by [https://blog.miguelgrinberg.com/post/how-to-create-a-react--flask-project](https://blog.miguelgrinberg.com/post/how-to-create-a-react--flask-project).
 
 ## Step 1. Create the React App.
